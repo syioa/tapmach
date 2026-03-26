@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>tapmach</title>
     <style>
+        /* Root Colors */
         :root {
             --bg: #24273a;
             --cell-bg: #363a4f;
             --text: #cad3f5;
             --size: 40px;
         }
+
+        /* Body */
         body {
             background: var(--bg);
             color: var(--text);
@@ -23,6 +26,8 @@
             margin: 0;
             padding: 0;
         }
+
+        /* Textarea Styles */
         #textarea {
             width: 100%;
             position: absolute;
@@ -56,9 +61,47 @@
         textarea:focus {
             border-color: #444;
         }
+
+        /* Run Button */
+        .run-btn {
+            background-color: var(--cell-bg);
+            color: var(--text);
+
+            border: 1px solid rgba(202, 211, 245, 0.1);
+            border-radius: 6px;
+            padding: 8px 10px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            outline: none;
+
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transform-origin: center;
+
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .run-btn:hover {
+            background-color: #494d64;
+            border-color: var(--text);
+        }
+        .run-btn:active {
+            transform: scale(1.2);
+        }
     </style>
 </head>
 <body>
+    <button class="run-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+        </svg>
+    </button>
+
     <div id="viewport">
         <div id="tape"></div>
     </div>

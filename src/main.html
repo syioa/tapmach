@@ -318,7 +318,7 @@
             if (index < 0 || index >= cells.length) return;
 
             previous_cell = current_cell;
-            current_cell = index;
+            current_cell += index;
             const target = cells[current_cell];
 
             target.scrollIntoView({

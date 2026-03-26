@@ -109,6 +109,8 @@
         }
         #tape {
             display: inline-flex;
+            padding-left: 5px;
+            padding-right: 5px;
             gap: 0;
         }
 
@@ -124,6 +126,9 @@
             font-size: 14px;
             box-sizing: border-box;
             flex-shrink: 0;
+        }
+        .cell.active {
+            border: 1px solid #a6da95;
         }
 
         /* Animations */
@@ -200,6 +205,8 @@
                 code.push('destroy_cell(');
             } else if (currentToken === 'add') {
                 code.push('add(')
+            } else if (currentToken === 'move') {
+                code.push('move(')
             } else if (!isNaN(currentToken) && currentToken.trim() !== "") {
                 if (nextToken !== 'line_end') {
                     code.push(`${currentToken},`)
@@ -279,7 +286,8 @@
             
             list.push(val);
             tape.appendChild(div);
-            cells.push(div)
+            cells.push(div);
+            if (list.length === 1) cells[current_cell].classList.add('active');
 
             const scrollAmount = viewport.scrollWidth - viewport.clientWidth;
             viewport.scrollTo({
@@ -302,6 +310,26 @@
             target.classList.add('animate-destroy');
 
             setTimeout(() => target.remove(), 300);
+        }
+
+        function move(index) {
+            if (index < 0 || index >= cells.length) return;
+
+            previous_cell = current_cell;
+            current_cell = index;
+            const target = cells[current_cell];
+
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest',
+                inline: 'center'
+            });
+
+            target.classList.remove('animate-update');
+            void target.offsetWidth;
+            target.classList.add('animate-update');
+            cells[previous_cell].classList.remove('active');
+            cells[current_cell].classList.add('active');
         }
     </script>
 

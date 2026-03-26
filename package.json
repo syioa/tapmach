@@ -1,0 +1,16 @@
+{
+  "name": "tapmach",
+  "version": "0.0.1",
+  "module": "./src/index.ts",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "dev": "bun run ./src/index.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}

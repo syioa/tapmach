@@ -310,6 +310,8 @@
             target.classList.add('animate-destroy');
 
             setTimeout(() => target.remove(), 300);
+            current_cell -= 1;
+            move(current_cell);
         }
 
         function move(index) {
@@ -325,9 +327,6 @@
                 inline: 'center'
             });
 
-            target.classList.remove('animate-update');
-            void target.offsetWidth;
-            target.classList.add('animate-update');
             cells[previous_cell].classList.remove('active');
             cells[current_cell].classList.add('active');
         }

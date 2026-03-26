@@ -310,12 +310,11 @@
             target.classList.add('animate-destroy');
 
             setTimeout(() => target.remove(), 300);
-            current_cell -= 1;
-            move(current_cell);
+            move(-1);
         }
 
         function move(index) {
-            if (index < 0 || index >= cells.length) return;
+            if (current_cell+index < 0 || current_cell+index >= cells.length) return;
 
             previous_cell = current_cell;
             current_cell += index;

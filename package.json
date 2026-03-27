@@ -9,7 +9,7 @@
     "dist/"
   ],
   "bin": {
-    "tapmach": "./dist/index.js"
+    "tapmach": "dist/index.js"
   },
   "scripts": {
     "dev": "bun run ./src/index.ts",

@@ -497,9 +497,18 @@
             setTimeout(() => {
                 target.remove();
             }, 300);
-            move(-1);
-            list.splice(current_cell+1, 1);
-            cells.splice(current_cell+1, 1);
+            if (current_cell === 0) {
+                move(1);
+                list.splice(current_cell-1, 1);
+                cells.splice(current_cell-1, 1);
+                current_cell = 0;
+            } else {
+                move(-1);
+                list.splice(current_cell+1, 1);
+                cells.splice(current_cell+1, 1);
+            }
+
+            console.log(current_cell);
         }
 
         function move(index) {

@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.3.1 - 2026-03-27
+#### Documentation
+- update README.md - (57c9860) - syioa
+#### Miscellaneous Chores
+- add tapmach logo to README.md - (87a5b8b) - syioa
+
+- - -
+
 ## 0.3.0 - 2026-03-27
 #### Features
 - add numberless shortcodes scripting language - (e03d3fb) - syioa

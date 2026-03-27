@@ -266,6 +266,7 @@
             <select id="lang">
                 <option value="default">Default</option>
                 <option value="shortcodes">Shortcodes</option>
+                <option value="numberless shortcodes">Numberless Shortcodes</option>
             </select>
         </div>
         <div class="speed-control">
@@ -355,6 +356,26 @@
             }
         }
 
+        function tokenToCode_Numberless_Shortcodes(code, currentToken, nextToken, speed) {
+            if (currentToken === 'cc') {
+                code.push('create_cell();');
+            } else if (currentToken === 'dc') {
+                code.push('destroy_cell();');
+            } else if (currentToken === 'add') {
+                code.push('add(1);')
+            } else if (currentToken === 'sub') {
+                code.push('add(-1);')
+            } else if (currentToken === 'mov') {
+                code.push('move(1);')
+            } else if (currentToken === 'vom') {
+                code.push('move(-1);')
+            } else if (currentToken === 'line_end') {
+                code.push(`await sleep(${speed});`);
+            } else {
+                throw Error(`Can't parse the code, wrong instruction: ${currentToken}`);
+            }
+        }
+        
         function convertToCode(text, lang = 'default') {
             let tokens = parse(text);
             const speed = document.getElementById('speed').value || 1000;
@@ -364,6 +385,8 @@
                 tokenToCode = tokenToCode_Default;
             } else if (lang === 'shortcodes') {
                 tokenToCode = tokenToCode_Shortcodes;
+            } else if (lang === 'numberless shortcodes') {
+                tokenToCode = tokenToCode_Numberless_Shortcodes;
             } else {
                 tokenToCode = tokenToCode_Default;
             }

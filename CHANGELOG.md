@@ -2,6 +2,20 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.2.0 - 2026-03-27
+#### Features
+- introduce another language - (89fb9a1) - syioa
+- add google fonts apis' link for JetBrains Mono font - (d83bc55) - syioa
+#### Bug Fixes
+- fix some colors - (eaff909) - syioa
+#### Refactoring
+- make ui responsive - (42ce752) - syioa
+- use better units in css - (f782ce8) - syioa
+- add some defaults - (b34ebf9) - syioa
+- change font size of the interval input field - (1555f9f) - syioa
+
+- - -
+
 ## 0.1.2 - 2026-03-27
 #### Bug Fixes
 - fix a typo in package.json - (173fd39) - syioa

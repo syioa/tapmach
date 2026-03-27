@@ -258,6 +258,9 @@
 </head>
 <body>
     <div class="controls-header">
+        <div class="status">
+            -
+        </div>
         <div class="lang-control">
             <label for="lang">Mode:</label>
             <select id="lang">
@@ -365,13 +368,16 @@
                 tokenToCode = tokenToCode_Default;
             }
 
+            code.push(`status.style.color = '#eed49f';status.innerHTML = ' ... ';`);
+
             for (let i = 0; i < tokens.length; i++) {
                 tokenToCode(code, tokens[i], tokens[i+1], speed);
             }
-            
+           
+            code.push(`status.innerHTML = ' :) ';status.style.color = '#a6da95';setTimeout(() => { status.style.color = '#cad3f5'; status.innerHTML = ' - '; }, 2000);`);
             code.push('})();')
             code = code.join('');
-
+            
             return code;
         }
     </script>
@@ -502,9 +508,11 @@
 
     <script>
         const button = document.querySelector('.run-btn');
+        const status = document.querySelector('.status');
         button.addEventListener('click', async (e) => {
             let text = localStorage.getItem('text-content');
             let selectedLang = localStorage.getItem('selectedLang');
+
             eval(convertToCode(text, selectedLang));
         })
     </script>

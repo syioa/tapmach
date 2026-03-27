@@ -465,8 +465,12 @@
 
             target.classList.add('animate-destroy');
 
-            setTimeout(() => target.remove(), 300);
+            setTimeout(() => {
+                target.remove();
+            }, 300);
             move(-1);
+            list.splice(current_cell+1, 1);
+            cells.splice(current_cell+1, 1);
         }
 
         function move(index) {

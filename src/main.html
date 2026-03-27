@@ -70,6 +70,24 @@
             border-color: #444;
         }
 
+        /* Controls Header */
+        .controls-header {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 20px;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+        @media (max-width: 600px) {
+            .controls-header {
+                justify-content: center;
+                gap: 10px;
+            }
+        }
+
         /* Run Button */
         .run-btn {
             background-color: var(--cell-bg);
@@ -90,9 +108,9 @@
             gap: 8px;
             transform-origin: center;
 
-            position: absolute;
-            top: 5px;
-            right: 5px;
+            flex-shrink: 0;
+            position: static;
+            margin: 0;
         }
         .run-btn:hover {
             background-color: #494d64;
@@ -104,9 +122,8 @@
 
         /* Speed Control */
         .speed-control {
-            position: absolute;
-            top: 12px;
-            right: 5vw;
+            position: static;
+            margin: 0;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -131,9 +148,8 @@
 
         /* Lang Control */
         .lang-control {
-            position: absolute;
-            top: 12px;
-            right: 23vw;
+            position: static;
+            margin: 0;
             display: flex;
             align-items: center;
             gap: 8px;
@@ -158,13 +174,14 @@
             width: 98vw;
             max-height: 45vh;
             height: 45vh;
-            margin-top: 8vh;
+            margin-top: 1vh;
             overflow-y: auto;
             white-space: nowrap;
             padding: 10px;
             scroll-behavior: smooth;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 4px;
+            flex-grow: 1;
         }
         #tape {
             display: grid;
@@ -240,22 +257,24 @@
     </style>
 </head>
 <body>
-    <div class="lang-control">
-        <label for="lang">Mode:</label>
-        <select id="lang">
-            <option value="default">Default</option>
-            <option value="shortcodes">Shortcodes</option>
-        </select>
+    <div class="controls-header">
+        <div class="lang-control">
+            <label for="lang">Mode:</label>
+            <select id="lang">
+                <option value="default">Default</option>
+                <option value="shortcodes">Shortcodes</option>
+            </select>
+        </div>
+        <div class="speed-control">
+            <label for="speed">Interval (ms):</label>
+            <input type="number" id="speed" value="1000" min="0" step="100">
+        </div>
+        <button class="run-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M8 5v14l11-7z"/>
+            </svg>
+        </button>
     </div>
-    <div class="speed-control">
-        <label for="speed">Interval (ms):</label>
-        <input type="number" id="speed" value="1000" min="0" step="100">
-    </div>
-    <button class="run-btn">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M8 5v14l11-7z"/>
-        </svg>
-    </button>
 
     <div id="viewport">
         <div id="tape"></div>

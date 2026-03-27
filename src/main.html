@@ -298,6 +298,18 @@
 
         textarea.addEventListener('input', (e) => saveContent(e.target.value))
     </script>
+    <script>
+        const inputField = document.getElementById('speed');
+
+        window.addEventListener("load", function() {
+            inputField.value = localStorage.getItem('speed');
+        });
+
+
+        inputField.addEventListener('input', (e) => {
+            localStorage.setItem('speed', e.target.value);
+        })
+    </script>
 
     <script>
         const tape = document.getElementById('tape');

@@ -10,6 +10,7 @@ pre = "alpha.*"
 skip_ci = "[skip ci]"
 skip_untracked = false
 pre_bump_hooks = [
+    "bun run build",
     "echo 'bumping from {{latest|0.0.1}} to {{version|0.0.1}}'",
     "npm version {{version|0.0.1}} --no-git-tag-version",
 ]

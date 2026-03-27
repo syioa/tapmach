@@ -2,6 +2,18 @@
 All notable changes to this project will be documented in this file. See [conventional commits](https://www.conventionalcommits.org/) for commit guidelines.
 
 - - -
+## 0.3.0 - 2026-03-27
+#### Features
+- add numberless shortcodes scripting language - (e03d3fb) - syioa
+- add a very minimal program status indicator - (b9f4010) - syioa
+#### Bug Fixes
+- fix the destroy_cell function - (6cdceb9) - syioa
+- fix a critical bug while destroying cells - (525c3f2) - syioa
+#### Refactoring
+- remove async modifier from update, create_cell, destroy_cell and move functions - (3569832) - syioa
+
+- - -
+
 ## 0.2.1 - 2026-03-27
 #### Miscellaneous Chores
 - add build command in cog.toml - (ba9dd23) - syioa

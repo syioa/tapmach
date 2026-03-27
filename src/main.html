@@ -136,6 +136,7 @@
         /* Scrolling Container */
         #viewport {
             width: 90vw;
+            max-height: 40vh;
             margin-top: 20vh;
             overflow-x: auto;
             white-space: nowrap;
@@ -144,7 +145,10 @@
             /* border-bottom: 1px solid #494d64; */
         }
         #tape {
-            display: inline-flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, var(--size));
+            gap: 4px;
+            justify-content: center;
             padding-left: 5px;
             padding-right: 5px;
             gap: 0;
@@ -343,9 +347,8 @@
             cells.push(div);
             if (list.length === 1) cells[current_cell].classList.add('active');
 
-            const scrollAmount = viewport.scrollWidth - viewport.clientWidth;
             viewport.scrollTo({
-                left: scrollAmount,
+                left: viewport.scrollHeight,
                 behavior: 'smooth'
             });
             await waitForAnimation(viewport);
@@ -365,7 +368,6 @@
             target.classList.add('animate-destroy');
 
             setTimeout(() => target.remove(), 300);
-            await waitForAnimation(target);
             move(-1);
         }
 
@@ -385,8 +387,8 @@
             } else {
                 target.scrollIntoView({
                     behavior: 'smooth',
-                    block: 'nearest',
-                    inline: 'center',
+                    block: 'center',
+                    inline: 'nearest',
                 });
 
                 

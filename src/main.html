@@ -127,13 +127,16 @@
 
         /* Scrolling Container */
         #viewport {
-            width: 90vw;
+            width: 98vw;
             max-height: 40vh;
-            margin-top: 20vh;
-            overflow-x: auto;
+            height: 40vh;
+            margin-top: 8vh;
+            overflow-y: auto;
             white-space: nowrap;
-            padding: 20px 0;
+            padding: 10px;
             scroll-behavior: smooth;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
             /* border-bottom: 1px solid #494d64; */
         }
         #tape {
@@ -141,8 +144,8 @@
             grid-template-columns: repeat(auto-fill, var(--size));
             gap: 4px;
             justify-content: center;
-            padding-left: 5px;
-            padding-right: 5px;
+            padding-left: 0;
+            padding-right: 0;
             gap: 0;
         }
 

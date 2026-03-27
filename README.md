@@ -1,3 +1,5 @@
+![Banner](assets/logo.png)
+
 # tapmach
 
 **tapmach**, a list-based programming language designed for visual execution and extreme simplicity. It focuses on manipulating a dynamic array of cells through a clean interface. It is also quite performant.

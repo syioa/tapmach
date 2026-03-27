@@ -10,8 +10,8 @@ pre = "alpha.*"
 skip_ci = "[skip ci]"
 skip_untracked = false
 pre_bump_hooks = [
-    "echo 'bumping from {{latest}} to {{version}}'",
-    "npm version {{version}} --no-git-tag-version",
+    "echo 'bumping from {{latest|0.0.1}} to {{version|0.0.1}}'",
+    "npm version {{version|0.0.1}} --no-git-tag-version",
 ]
 post_bump_hooks = []
 pre_package_bump_hooks = []

@@ -128,6 +128,30 @@
             margin: 0;
         }
 
+        /* Lang Control */
+        .lang-control {
+            position: absolute;
+            top: 12px;
+            right: 23vw;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 11pt;
+            color: var(--text);
+        }
+        .lang-control select {
+            background: var(--cell-bg);
+            color: var(--text);
+            border: 1px solid rgba(202, 211, 245, 0.1);
+            border-radius: 4px;
+            padding: 4px 8px;
+            font-family: "JetBrains Mono", monospace;
+            outline: none;
+            cursor: pointer;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
         /* Scrolling Container */
         #viewport {
             width: 98vw;
@@ -215,6 +239,13 @@
     </style>
 </head>
 <body>
+    <div class="lang-control">
+        <label for="lang">Mode:</label>
+        <select id="lang">
+            <option value="default">Default</option>
+            <option value="shortcodes">Shortcodes</option>
+        </select>
+    </div>
     <div class="speed-control">
         <label for="speed">Interval (ms):</label>
         <input type="number" id="speed" value="1000" min="0" step="100">
@@ -257,7 +288,7 @@
             return tokens;
         }
 
-        function tokenToCode(code, currentToken, nextToken, speed) {
+        function tokenToCode_Default(code, currentToken, nextToken, speed) {
             if (currentToken === 'create_cell') {
                 code.push('create_cell(');
             } else if (currentToken === 'destroy_cell') {
@@ -279,10 +310,38 @@
             }
         }
 
-        function convertToCode(text) {
+        function tokenToCode_Shortcodes(code, currentToken, nextToken, speed) {
+            if (currentToken === 'cc') {
+                code.push('create_cell(');
+            } else if (currentToken === 'dc') {
+                code.push('destroy_cell(');
+            } else if (currentToken === 'add') {
+                code.push('add(')
+            } else if (currentToken === 'mov') {
+                code.push('move(')
+            } else if (!isNaN(currentToken) && currentToken.trim() !== "") {
+                if (nextToken !== 'line_end') {
+                    code.push(`${currentToken},`)
+                } else {
+                    code.push(`${currentToken}`)
+                }
+            } else if (currentToken === 'line_end') {
+                code.push(`); await sleep(${speed});`);
+            } else {
+                throw Error(`Can't parse the code, wrong instruction: ${currentToken}`);
+            }
+        }
+
+        function convertToCode(text, lang = 'default') {
             let tokens = parse(text);
             const speed = document.getElementById('speed').value || 1000;
             let code = ['(async () => {'];
+            let tokenToCode = undefined;
+            if (lang === 'default') {
+                tokenToCode = tokenToCode_Default;
+            } else if (lang === 'shortcodes') {
+                tokenToCode = tokenToCode_Shortcodes;
+            }
 
             for (let i = 0; i < tokens.length; i++) {
                 tokenToCode(code, tokens[i], tokens[i+1], speed);
@@ -319,14 +378,19 @@
     </script>
     <script>
         const inputField = document.getElementById('speed');
+        const lang = document.getElementById('lang');
 
         window.addEventListener("load", function() {
             inputField.value = localStorage.getItem('speed');
+            lang.value = localStorage.getItem('selectedLang');
         });
-
 
         inputField.addEventListener('input', (e) => {
             localStorage.setItem('speed', e.target.value);
+        })
+
+        lang.addEventListener('change', (e) => {
+            localStorage.setItem('selectedLang', e.target.value);
         })
     </script>
 
@@ -414,7 +478,8 @@
         const button = document.querySelector('.run-btn');
         button.addEventListener('click', async (e) => {
             let text = localStorage.getItem('text-content');
-            eval(convertToCode(text));
+            let selectedLang = localStorage.getItem('selectedLang');
+            eval(convertToCode(text, selectedLang));
         })
     </script>
 </body>

@@ -1,3 +1,5 @@
+#!/usr/bin/env bun
+
 import ansis from 'ansis';
 import { exit_gracefully } from './utils';
 import htmlContent from "./main.html" with { type: "text" };

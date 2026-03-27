@@ -6,8 +6,11 @@
   "private": false,
   "main": "dist/index.js",
   "files": [
-    "dist"
+    "dist/"
   ],
+  "bin": {
+    "tapmach": "./dist/index.js"
+  },
   "scripts": {
     "dev": "bun run ./src/index.ts",
     "build": "bun build ./src/index.ts --outdir ./dist --target bun"

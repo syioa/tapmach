@@ -321,14 +321,24 @@
             current_cell += index;
             const target = cells[current_cell];
 
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'nearest',
-                inline: 'center'
-            });
+            const rect = target.getBoundingClientRect();
+            const viewportRect = viewport.getBoundingClientRect();
 
-            cells[previous_cell].classList.remove('active');
-            cells[current_cell].classList.add('active');
+            if (rect.left >= viewportRect.left && rect.right <= viewportRect.right) {
+                cells[previous_cell].classList.remove('active');
+                cells[current_cell].classList.add('active');
+            } else {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'nearest',
+                    inline: 'center',
+                });
+
+                setTimeout(() => {
+                    cells[previous_cell].classList.remove('active');
+                    cells[current_cell].classList.add('active');
+                }, 600)
+            }
         }
     </script>
 

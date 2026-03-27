@@ -128,8 +128,8 @@
         /* Scrolling Container */
         #viewport {
             width: 98vw;
-            max-height: 40vh;
-            height: 40vh;
+            max-height: 45vh;
+            height: 45vh;
             margin-top: 8vh;
             overflow-y: auto;
             white-space: nowrap;
@@ -137,7 +137,6 @@
             scroll-behavior: smooth;
             background: rgba(0, 0, 0, 0.2);
             border-radius: 4px;
-            /* border-bottom: 1px solid #494d64; */
         }
         #tape {
             display: grid;
@@ -190,15 +189,26 @@
 
         /* Styling Of Scrollbars */
         #viewport::-webkit-scrollbar {
-            width: 4px;
+            width: 3px;
         }
         #viewport::-webkit-scrollbar-track {
             background: rgba(0, 0, 0, 0.2);
         }
         #viewport::-webkit-scrollbar-thumb {
             background: #494d64;
-            border-radius: 10px;
-            transition: background 0.3s;
+            border-radius: 6px;
+        }
+
+        textarea::-webkit-scrollbar {
+            width: 3px;
+        }
+        textarea::-webkit-scrollbar-track {
+            background-color: #121212;
+            border-radius: 6px;
+        }
+        textarea::-webkit-scrollbar-thumb {
+            background-color: #494d64;
+            border-radius: 6px;
         }
     </style>
 </head>

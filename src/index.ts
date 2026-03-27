@@ -1,12 +1,14 @@
-import html from './main.html';
 import ansis from 'ansis';
 import { exit_gracefully } from './utils';
+import htmlContent from "./main.html" with { type: "text" };
 
 console.clear();
 
 const server = Bun.serve({
     routes: {
-        "/": html
+        "/": new Response(htmlContent, {
+            headers: { "Content-Type": 'text/html' }
+        })
     }
 })
 
